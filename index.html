@@ -1,85 +1,248 @@
 <!DOCTYPE html>
-  <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FiguSwap</title>
-    <style>
-      :root {
-        color-scheme: dark;
-      }
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FiguSwap</title>
 
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        background: #0b0b0d;
-        color: #f5f5f7;
-        line-height: 1.6;
-      }
+  <style>
+    :root {
+      --background: #0b0b0d;
+      --card: #151518;
+      --text: #f5f5f7;
+      --muted: #8e8e93;
+      --accent: #12d97c;
+      --border: #2a2a2e;
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top, #102217 0%, #0b0b0d 42%, #080809 100%);
+      color: var(--text);
+    }
+
+    main {
+      min-height: 100vh;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero {
+      width: 100%;
+    }
+
+    .app-icon {
+      width: 128px;
+      height: 128px;
+      margin: 0 auto 28px;
+      border-radius: 30px;
+      background: linear-gradient(145deg, #12d97c, #0b8f55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 24px 80px rgba(18, 217, 124, 0.22);
+      overflow: hidden;
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .app-icon-placeholder {
+      font-size: 56px;
+      font-weight: 900;
+      color: #071009;
+      letter-spacing: -4px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 9vw, 82px);
+      line-height: 0.95;
+      letter-spacing: -4px;
+    }
+
+    .subtitle {
+      margin: 22px auto 0;
+      max-width: 640px;
+      color: #d2d2d7;
+      font-size: clamp(18px, 3.2vw, 24px);
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 36px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: #1b1b1f;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #051009;
+      border-color: var(--accent);
+    }
+
+    .button.primary:hover {
+      background: #20ea8d;
+    }
+
+    .links {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+    }
+
+    .links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .links a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .contact {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 52px;
+      color: #6f6f75;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
       main {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 56px 24px;
+        padding: 36px 20px;
+      }
+
+      .app-icon {
+        width: 108px;
+        height: 108px;
+        border-radius: 26px;
       }
 
       h1 {
-        font-size: clamp(40px, 10vw, 64px);
-        line-height: 1;
-        margin: 0 0 16px;
-        letter-spacing: -0.03em;
+        letter-spacing: -2.5px;
       }
 
-      p {
-        color: #d2d2d7;
-        font-size: 18px;
-        margin: 0 0 32px;
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
       }
 
-      nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 12px;
+      .button {
+        width: 100%;
       }
+    }
+  </style>
+</head>
 
-      a {
-        display: block;
-        color: #f5f5f7;
-        text-decoration: none;
-        background: #151518;
-        border: 1px solid #2a2a2e;
-        border-radius: 16px;
-        padding: 18px 20px;
-        font-weight: 600;
-      }
+<body>
+  <main>
+    <section class="hero">
 
-      a:hover {
-        border-color: #12d97c;
-        color: #12d97c;
-      }
+      <div class="app-icon">
+        <!-- 
+          Cuando tengas el icono real, guárdalo como:
+          assets/figuswap-icon.png
 
-      .muted {
-        color: #8e8e93;
-        font-size: 14px;
-        margin-top: 32px;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
+          Luego reemplaza el contenido de este div por:
+          <img src="assets/figuswap-icon.png" alt="FiguSwap app icon" />
+        -->
+        <div class="app-icon-placeholder">FS</div>
+      </div>
+
       <h1>FiguSwap</h1>
-      <p>Intercambia figuritas de forma simple, organizada y segura.</p>
 
-      <nav aria-label="Documentos de FiguSwap">
-        <ul>
-          <li><a href="/terms-and-privacy.html">Términos y privacidad</a></li>
-          <li><a href="mailto:figuswap.app@gmail.com">Soporte</a></li>
-        </ul>
+      <p class="subtitle">
+        Intercambia figuritas de forma simple, organizada y segura.
+      </p>
+
+      <div class="actions">
+        <!-- Cuando tengas la URL real de App Store, reemplaza el href="#" -->
+        <a class="button primary" href="#" aria-label="Descargar FiguSwap en App Store">
+          Próximamente en App Store
+        </a>
+
+        <!-- Puedes ocultar este botón si por ahora solo lanzarás iOS -->
+        <a class="button" href="#" aria-label="Descargar FiguSwap en Google Play">
+          Próximamente en Google Play
+        </a>
+      </div>
+
+      <nav class="links" aria-label="Enlaces principales">
+        <a href="/terms-and-privacy/es/">Términos y privacidad</a>
+        <a href="/support.html">Soporte</a>
+        <a href="mailto:figuswap.app@gmail.com">Contacto</a>
       </nav>
 
-      <p class="muted">FiguSwap · 2026</p>
-    </main>
-  </body>
-  </html>
+      <p class="contact">
+        ¿Necesitas ayuda? Escríbenos a
+        <a href="mailto:figuswap.app@gmail.com">figuswap.app@gmail.com</a>
+      </p>
+
+      <footer>
+        FiguSwap · 2026
+      </footer>
+
+    </section>
+  </main>
+</body>
+</html>
